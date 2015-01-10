@@ -85,7 +85,7 @@ plot.tooth.growth
 
 Rmd source:
 
-<script src="http://gist-it.appspot.com/https://github.com/daigotanaka/papers/blob/master/a-method-of-rapidly-communicating-quantitative-research.Rmd?slice=48:85&footer=0">
+<script src="http://gist-it.appspot.com/https://github.com/daigotanaka/papers/blob/master/a-method-of-rapidly-communicating-quantitative-research.Rmd?slice=49:84&footer=0">
 </script>
 
 It can run hypothesis tests on the server too:
@@ -116,7 +116,7 @@ dbDisconnect(con)
 
 Rmd source:
 
-<script src="http://gist-it.appspot.com/https://github.com/daigotanaka/papers/blob/master/a-method-of-rapidly-communicating-quantitative-research.Rmd?slice=136:148&footer=0">
+<script src="http://gist-it.appspot.com/https://github.com/daigotanaka/papers/blob/master/a-method-of-rapidly-communicating-quantitative-research.Rmd?slice=100:115&footer=0">
 </script>
 
 ### How to make the server run R
