@@ -35,12 +35,14 @@ data as instructed by the R scripts in the Rmd, and publishes the result.
 
 There is [Shiny](http://shiny.rstudio.com) that produces dynamic data contents
 only with the knowledge of R. However, their focus is more on developing
-interactive web applications than generating research reports.
+interactive web applications than generating research reports. RPubs is suited
+for static document, but it has to be published on rpubs.com.
 
 With the proposed system, quantitative researchers can focus on writing
 manuscript and the method of analysis in markdown and R. Without having to 
 switch the tool to other applications or computer languages (HTML, JavaScript,
-and etc), they can publish the result for others to review.
+and etc), they can post the result for others to review on proprietary
+web sites both privately and publicly.
 
 I will first demonstrate how the page is rendered from Rmd, and describe the
 steps I took to make the server run R that connects to PostgreSQL database.  
@@ -111,13 +113,43 @@ ggplot(df, aes(x=t.hour)) +
   geom_histogram(binwidth=1, colour="#C6808C", fill="#C6808C") +
   xlab("Time of the day") +
   ggtitle("Blog post time stamps")
-dbDisconnect(con)
+ret = dbDisconnect(con)
 ```
 
 Rmd source:
 
 <script src="http://gist-it.appspot.com/https://github.com/daigotanaka/papers/blob/master/a-method-of-rapidly-communicating-quantitative-research.Rmd?slice=100:115&footer=0">
 </script>
+
+#### Example 3. Interactive chart with rCharts
+
+The interactive chart below is created by less than 10 lines of R code.
+
+Eye color counts grouped by hair colors:
+```{r, echo=FALSE, message=FALSE, comment=NA, results="asis", tidy=FALSE}
+library(rCharts)
+hair_eye = subset(as.data.frame(HairEyeColor))
+n1 <- nPlot(Freq ~ Hair, group = "Eye",
+  data = hair_eye, type = "multiBarChart"
+  )
+n1$xAxis(axisLabel = "Hair colors")
+n1$yAxis(axisLabel = "Eye color count")
+n1$set(width = 600)
+n1$show("inline", include_assets = TRUE, cdn = TRUE)
+```
+
+Rmd source:
+
+<script src="http://gist-it.appspot.com/https://github.com/daigotanaka/papers/blob/master/a-method-of-rapidly-communicating-quantitative-research.Rmd?slice=126:137&footer=0">
+</script>
+
+## rCharts on R-markdown
+
+This is a quick demonstration of interactive charts written with R-markdown:
+
+```{r, echo=FALSE, message=FALSE, comment=NA, results="asis", tidy=FALSE, html.cap="Figure 1: The counts of eye colors grouped by hair colors"}
+n1$show('inline', include_assets = TRUE, cdn = TRUE)
+```
 
 ### How to make the server run R
 
